@@ -276,6 +276,6 @@ ggplotly(g)
 
 # Gracias
 
-{{< fa link >}}  [dani-5.quarto.pub/presentacion-rladies/](https://dani-5.quarto.pub/presentacion-rladies/)
+{{< fa link >}} [dani-5.quarto.pub/presentacion-rladies/](https://dani-5.quarto.pub/presentacion-rladies/)
 
-
+{{< fa brand github >}} [github.com/Dani2509/Presentacion_Quarto_Rladies](https://github.com/Dani2509/Presentacion_Quarto_Rladies)
