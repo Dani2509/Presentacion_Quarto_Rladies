@@ -1,0 +1,4 @@
+- source: presentacion.qmd
+  quarto-pub:
+    - id: 11f828c5-b82f-4455-92b9-083ed36c126b
+      url: 'https://dani-5.quarto.pub/presentacion-rladies'

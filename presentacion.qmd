@@ -1,0 +1,281 @@
+---
+title: "Creando presentaciones con **Quarto**"
+author: "Daniela Ospino"
+subtitle: "Rladies Medellín | 2024"
+title-slide-attributes:
+  data-background-image: "portada.png"
+format: 
+  revealjs:
+      logo: "logo.png"
+      theme: custom.scss
+      height: 900
+      width: 1600
+      chalkboard: true
+      highlight-style: a11y-dark
+editor: visual
+lightbox: true
+---
+
+# Daniela O 😄 {.center .aboutmeslide}
+
+::: columns
+::: {.column width="60%"}
+-   Contacto
+
+    -   Twitter: [\@biocolombianita](https://x.com/biocolombianita)
+
+    -   Blog: [labiocolombianita.com](https://labiocolombianita.com/)
+
+-   Sobre mi
+
+    -   Miembro R-ladies Medellin
+
+    -   Estudiante de biología
+
+    -   Apasionada de R-programming y los SIG
+:::
+
+::: {.column width="40%"}
+![](foto.png)
+:::
+:::
+
+# 📍 Objetivos de aprendizaje
+
+Responder las siguientes preguntas...
+
+-   ¿ Qué es Quarto?
+
+-   ¿ Cómo crear presentaciones en Quarto?
+
+-   ¿ Cómo poner tus presentaciones en línea?
+
+# ¿ Qué es Quarto? 🤔
+
+# Quarto
+
+Es un sistema de escritura científica y técnica de código abierto caracterizado por la versatilidad de la entrada en varios idiomas de programación (ej: Python, R, Julia, etc)
+
+![](quarto-all.jpeg){fig-align="center" width="694"}
+
+::: {style="text-align:center;"}
+Imagen de njtierney.com
+:::
+
+# !Quarto la nueva generación de **Rmarkdown**! {.smaller}
+
+![](quarto_new.png){fig-align="center"}
+
+# Ahora 😜... vamos a crear una presentación
+
+##  {auto-animate="true"}
+
+::: {style="margin-top: 100px;"}
+Let's Do it
+:::
+
+##  {auto-animate="true"}
+
+::: {style="margin-top: 200px; font-size: 2em; color: #4c83b6;"}
+**Let's Do it**
+:::
+
+# 1. Creamos un nuevo proyecto
+
+::: columns
+::: {.column width="70%"}
+![](video.gif)
+:::
+
+::: {.column width="30%"}
+::: {style="font-size:40px;"}
+Abrimos Rstudio y creamos un nuevo proyecto y le damos un nombre. Esto te creará una carpeta en la cual pondremos todos los archivos de nuestra presentación.
+:::
+:::
+:::
+
+# 2. Añadimos la presentación de Quarto
+
+::: {style="font-size:40px;"}
+En la carpeta que creamos anteriormente añadiremos nuestra presentación. Para eso te vas a `New file > Quarto presentation > Revealjs`
+:::
+
+::: r-stack
+![](proyecto.jpg){.fragment fig-align="center" width="990" height="549"}
+
+![](proyecto2.jpg){.fragment fig-align="center" width="910" height="549"}
+
+![](proyecto3.jpg){.fragment fig-align="center" width="910" height="549"}
+
+![](yaml.jpg){.fragment fig-align="center" width="910" height="549"}
+:::
+
+# Listo ✔️
+
+Ahora ya haz creado una presentación, vamos a personalizarla.
+
+## Crear nuevas diapositivas {.smaller}
+
+``` r
+---
+title: "Título"
+format: revealjs
+editor: visual
+---
+```
+
+Las diapositivas se separan considerando títulos y subtítulos: \# y ##.
+
+-   Use \# para crear una nueva sección.
+
+-   Use \## para crear una nueva diapositiva.
+
+::: callout-note
+Otra forma es agregar - - - después del contenido y se creará una nueva diapositiva 😉
+:::
+
+# ¿ Cómo personalizar las presentaciones ? 🎨
+
+## Usar un tema predefinido {.smaller}
+
+Hay 11 temas integrados para las presentaciones de Revealjs. Sin embargo también puedes crear tus propios temas añadiendo un documento .scss en tu proyecto.
+
+Aquí está la lista completa de temas disponibles:
+
+::: columns
+::: {.column width="50%"}
+-   beige
+
+-   blood
+
+-   dark
+
+-   default
+
+-   league
+
+-   moon
+
+-   night
+
+-   serif
+
+-   simple
+
+-   sky
+
+-   solarized
+:::
+
+::: {.column width="50%"}
+``` r
+---
+title: "Título"
+format: 
+  revealjs:
+    theme: dark
+editor: visual
+```
+
+------------------------------------------------------------------------
+
+Recuerda poner el tema en el YAML
+
+::: callout-note
+Para aprender a como personalizar un tema puedes explorar el blog de quarto ([Aquí](https://quarto.org/docs/presentations/revealjs/advanced.html)) ❗
+:::
+:::
+:::
+
+## Temas recomendados
+
+::: panel-tabset
+## simple
+
+![](simple.png){fig-align="center" width="1020"}
+
+## dark
+
+![](dark.jpg){fig-align="center" width="1020"}
+
+## moon
+
+![](moon.jpg){fig-align="center" width="1020"}
+
+## beige
+
+![](beige.jpg){fig-align="center" width="1020"}
+:::
+
+## Añadir código y ejecutarlo {.scrollable}
+
+```{r}
+#| eval: true
+#| echo: true
+
+library(ggplot2)
+library(palmerpenguins)
+theme_set(theme_minimal())
+
+data(package = 'palmerpenguins')
+head(penguins)
+```
+
+## Añadir código y ejecutarlo {.scrollable}
+
+```{r}
+#| eval: true
+#| echo: true
+#| fig-align: "center"
+
+ggplot(penguins, aes(x = sex, fill = species)) +
+  geom_bar(alpha = 0.8) +
+  scale_fill_manual(values = c("darkorange","purple","cyan4"), 
+                    guide = FALSE) +
+  theme_minimal() +
+  facet_wrap(~species, ncol = 1) +
+  coord_flip()
+```
+
+## Gráficos interactivos
+
+```{r}
+#| eval: true
+#| echo: true
+#| code-fold: true
+#| fig-align: "center"
+
+library(plotly)
+g <- ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(color = species, 
+                 shape = species),
+             size = 2)  +
+  scale_color_manual(values = c("darkorange","darkorchid","cyan4"))
+ggplotly(g)
+```
+
+# ¿ Cómo poner tus presentaciones en línea?
+
+## Algunas formas...
+
+::: incremental
+-   GitHub Pages
+
+-   Netlify
+
+-   **Quarto-Pub** (`usaremos este`) 👈
+:::
+
+## Publicar en Quarto-Pub
+
+-   Creamos una cuenta en [Quarto-Pub](https://quartopub.com/)
+-   Luego iniciamos sesión.
+-   Agregamos en la terminal el siguiente comando: `quarto publish quarto-pub`
+-   Aceptamos la autorización.
+-   Ahora nuestra presentación se encuentra en línea. Puedes compartirla con el link que se genera.
+
+# Gracias
+
+{{< fa link >}}  [dani-5.quarto.pub/presentacion-rladies/](https://dani-5.quarto.pub/presentacion-rladies/)
+
+
